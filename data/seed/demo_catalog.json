@@ -1,0 +1,89 @@
+{
+  "products": [
+    {
+      "sku": "IPHONE15PRO",
+      "slug": "iphone-15-pro",
+      "product_name": "iPhone 15 Pro 256GB",
+      "category": "Smartphones",
+      "rating": 4.8,
+      "review_count": 1204,
+      "base_prices": {
+        "DemoMarket": 499000,
+        "ShopRadar": 512000,
+        "PriceHub": 505500
+      }
+    },
+    {
+      "sku": "GALAXYS24",
+      "slug": "samsung-galaxy-s24",
+      "product_name": "Samsung Galaxy S24 256GB",
+      "category": "Smartphones",
+      "rating": 4.7,
+      "review_count": 932,
+      "base_prices": {
+        "DemoMarket": 429000,
+        "ShopRadar": 421000,
+        "PriceHub": 438500
+      }
+    },
+    {
+      "sku": "MBAIRM2",
+      "slug": "macbook-air-m2",
+      "product_name": "MacBook Air M2 13-inch",
+      "category": "Laptops",
+      "rating": 4.9,
+      "review_count": 743,
+      "base_prices": {
+        "DemoMarket": 619000,
+        "ShopRadar": 635000,
+        "PriceHub": 628000
+      }
+    },
+    {
+      "sku": "SONYXM5",
+      "slug": "sony-wh-1000xm5",
+      "product_name": "Sony WH-1000XM5",
+      "category": "Audio",
+      "rating": 4.8,
+      "review_count": 1540,
+      "base_prices": {
+        "DemoMarket": 179990,
+        "ShopRadar": 184990,
+        "PriceHub": 181500
+      }
+    },
+    {
+      "sku": "PS5",
+      "slug": "playstation-5",
+      "product_name": "PlayStation 5 Disc Edition",
+      "category": "Gaming",
+      "rating": 4.6,
+      "review_count": 2089,
+      "base_prices": {
+        "DemoMarket": 339990,
+        "ShopRadar": 331000,
+        "PriceHub": 344500
+      }
+    }
+  ],
+  "competitors": [
+    {
+      "name": "DemoMarket",
+      "marketplace": "Demo Marketplace",
+      "base_url": "https://demo.local/demomarket",
+      "default_seller": "DemoMarket Official"
+    },
+    {
+      "name": "ShopRadar",
+      "marketplace": "Shopify Demo Store",
+      "base_url": "https://demo.local/shopradar",
+      "default_seller": "ShopRadar KZ"
+    },
+    {
+      "name": "PriceHub",
+      "marketplace": "Marketplace Aggregator",
+      "base_url": "https://demo.local/pricehub",
+      "default_seller": "PriceHub Direct"
+    }
+  ]
+}

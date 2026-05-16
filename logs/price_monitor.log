@@ -1,0 +1,213 @@
+2026-05-16 09:52:24.521 | INFO     | src.services.demo_data:seed_demo_data:60 - Seeded 60 demo snapshots
+2026-05-16 09:52:31.638 | INFO     | src.scrapers.demo_store:scrape_all:60 - Demo scraper extracted 15 snapshots with 0 errors
+2026-05-16 09:52:31.653 | ERROR    | __main__:_run_scrape:126 - Scrape command failed
+Traceback (most recent call last):
+
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1815, in _execute_context
+    context = constructor(
+              └ <bound method DefaultExecutionContext._init_compiled of <class 'sqlalchemy.dialects.sqlite.base.SQLiteExecutionContext'>>
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\default.py", line 1496, in _init_compiled
+    flattened_processors[key](compiled_params[key])
+    │                         └ {'product_id': 1, 'competitor_id': 1, 'scraped_at': datetime.datetime(2026, 5, 16, 4, 52, 31, 636118, tzinfo=datetime.timezon...
+    └ {'scraped_at': <function DATETIME.bind_processor.<locals>.process at 0x000001A45B7C4540>, 'current_price': <cyfunction to_flo...
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\sql\sqltypes.py", line 2801, in process
+    return json_serializer(value)
+           │               └ {'sku': 'IPHONE15PRO', 'product_name': 'iPhone 15 Pro 256GB', 'category': 'Smartphones', 'current_price': Decimal('437000'), ...
+           └ <function dumps at 0x000001A451485DA0>
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           │                │      └ {'sku': 'IPHONE15PRO', 'product_name': 'iPhone 15 Pro 256GB', 'category': 'Smartphones', 'current_price': Decimal('437000'), ...
+           │                └ <function JSONEncoder.encode at 0x000001A451486160>
+           └ <json.encoder.JSONEncoder object at 0x000001A45145C980>
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             │    │          └ {'sku': 'IPHONE15PRO', 'product_name': 'iPhone 15 Pro 256GB', 'category': 'Smartphones', 'current_price': Decimal('437000'), ...
+             │    └ <function JSONEncoder.iterencode at 0x000001A451486200>
+             └ <json.encoder.JSONEncoder object at 0x000001A45145C980>
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\json\encoder.py", line 261, in iterencode
+    return _iterencode(o, 0)
+           │           └ {'sku': 'IPHONE15PRO', 'product_name': 'iPhone 15 Pro 256GB', 'category': 'Smartphones', 'current_price': Decimal('437000'), ...
+           └ <_json.Encoder object at 0x000001A45B732C80>
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                                      │ │         └ <member '__name__' of 'getset_descriptor' objects>
+                                      │ └ <attribute '__class__' of 'object' objects>
+                                      └ Decimal('437000')
+
+TypeError: Object of type Decimal is not JSON serializable
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+
+  File "C:\Users\User\Desktop\Arlan's projects\Project's for work\Competitive Pricing\ecommerce-price-monitor\src\cli.py", line 140, in <module>
+    raise SystemExit(main())
+                     └ <function main at 0x000001A4530323E0>
+
+  File "C:\Users\User\Desktop\Arlan's projects\Project's for work\Competitive Pricing\ecommerce-price-monitor\src\cli.py", line 71, in main
+    return _run_scrape(args.source, prefer_playwright=not args.static)
+           │           │    │                             │    └ True
+           │           │    │                             └ Namespace(command='scrape', source='demo_store', static=True)
+           │           │    └ 'demo_store'
+           │           └ Namespace(command='scrape', source='demo_store', static=True)
+           └ <function _run_scrape at 0x000001A453032480>
+
+> File "C:\Users\User\Desktop\Arlan's projects\Project's for work\Competitive Pricing\ecommerce-price-monitor\src\cli.py", line 109, in _run_scrape
+    repo.add_snapshot(snapshot)
+    │    │            └ ProductSnapshot(sku='IPHONE15PRO', product_name='iPhone 15 Pro 256GB', current_price=Decimal('437000'), old_price=Decimal('49...
+    │    └ <function PriceMonitorRepository.add_snapshot at 0x000001A452CBBEC0>
+    └ <src.database.repository.PriceMonitorRepository object at 0x000001A45B724590>
+
+  File "C:\Users\User\Desktop\Arlan's projects\Project's for work\Competitive Pricing\ecommerce-price-monitor\src\database\repository.py", line 90, in add_snapshot
+    self.session.flush()
+    │    │       └ <function Session.flush at 0x000001A452BA8D60>
+    │    └ <sqlalchemy.orm.session.Session object at 0x000001A45B5CFB60>
+    └ <src.database.repository.PriceMonitorRepository object at 0x000001A45B724590>
+
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 4331, in flush
+    self._flush(objects)
+    │    │      └ None
+    │    └ <function Session._flush at 0x000001A452BA8F40>
+    └ <sqlalchemy.orm.session.Session object at 0x000001A45B5CFB60>
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 4466, in _flush
+    with util.safe_reraise():
+         │    └ <class 'sqlalchemy.util.langhelpers.safe_reraise'>
+         └ <module 'sqlalchemy.util' from 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\sqlalchemy\...
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 121, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+          │         │              └ <traceback object at 0x000001A45B7BCE00>
+          │         └ <method 'with_traceback' of 'BaseException' objects>
+          └ StatementError('(builtins.TypeError) Object of type Decimal is not JSON serializable')
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\session.py", line 4427, in _flush
+    flush_context.execute()
+    │             └ <function UOWTransaction.execute at 0x000001A452B40720>
+    └ <sqlalchemy.orm.unitofwork.UOWTransaction object at 0x000001A45B7A0F50>
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 466, in execute
+    rec.execute(self)
+    │   │       └ <sqlalchemy.orm.unitofwork.UOWTransaction object at 0x000001A45B7A0F50>
+    │   └ <function SaveUpdateAll.execute at 0x000001A452B41260>
+    └ SaveUpdateAll(Mapper[PriceSnapshot(price_snapshots)])
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+    │    │         │               └ <function save_obj at 0x000001A452B43CE0>
+    │    │         └ <module 'sqlalchemy.orm.persistence' from 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\...
+    │    └ <module 'sqlalchemy.util.preloaded' from 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\s...
+    └ <module 'sqlalchemy.util' from 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\site-packages\\sqlalchemy\...
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+    └ <function _emit_insert_statements at 0x000001A452B82520>
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+             │          └ <function Connection.execute at 0x000001A452816E80>
+             └ <sqlalchemy.engine.base.Connection object at 0x000001A45B6DBED0>
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+           └ <bound method ClauseElement._execute_on_connection of <sqlalchemy.sql.dml.Insert object at 0x000001A45B6FF230>>
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\sql\elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+           │          └ <function Connection._execute_clauseelement at 0x000001A4528171A0>
+           └ <sqlalchemy.engine.base.Connection object at 0x000001A45B6DBED0>
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          │    └ <function Connection._execute_context at 0x000001A452817380>
+          └ <sqlalchemy.engine.base.Connection object at 0x000001A45B6DBED0>
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1821, in _execute_context
+    self._handle_dbapi_exception(
+    │    └ <function Connection._handle_dbapi_exception at 0x000001A4528176A0>
+    └ <sqlalchemy.engine.base.Connection object at 0x000001A45B6DBED0>
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+          │                    │              │                 └ TypeError('Object of type Decimal is not JSON serializable')
+          │                    │              └ (<class 'TypeError'>, TypeError('Object of type Decimal is not JSON serializable'), <traceback object at 0x000001A45B7BD200>)
+          │                    └ <method 'with_traceback' of 'BaseException' objects>
+          └ StatementError('(builtins.TypeError) Object of type Decimal is not JSON serializable')
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\base.py", line 1815, in _execute_context
+    context = constructor(
+              └ <bound method DefaultExecutionContext._init_compiled of <class 'sqlalchemy.dialects.sqlite.base.SQLiteExecutionContext'>>
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\engine\default.py", line 1496, in _init_compiled
+    flattened_processors[key](compiled_params[key])
+    │                         └ {'product_id': 1, 'competitor_id': 1, 'scraped_at': datetime.datetime(2026, 5, 16, 4, 52, 31, 636118, tzinfo=datetime.timezon...
+    └ {'scraped_at': <function DATETIME.bind_processor.<locals>.process at 0x000001A45B7C4540>, 'current_price': <cyfunction to_flo...
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\site-packages\sqlalchemy\sql\sqltypes.py", line 2801, in process
+    return json_serializer(value)
+           │               └ {'sku': 'IPHONE15PRO', 'product_name': 'iPhone 15 Pro 256GB', 'category': 'Smartphones', 'current_price': Decimal('437000'), ...
+           └ <function dumps at 0x000001A451485DA0>
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\json\__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           │                │      └ {'sku': 'IPHONE15PRO', 'product_name': 'iPhone 15 Pro 256GB', 'category': 'Smartphones', 'current_price': Decimal('437000'), ...
+           │                └ <function JSONEncoder.encode at 0x000001A451486160>
+           └ <json.encoder.JSONEncoder object at 0x000001A45145C980>
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             │    │          └ {'sku': 'IPHONE15PRO', 'product_name': 'iPhone 15 Pro 256GB', 'category': 'Smartphones', 'current_price': Decimal('437000'), ...
+             │    └ <function JSONEncoder.iterencode at 0x000001A451486200>
+             └ <json.encoder.JSONEncoder object at 0x000001A45145C980>
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\json\encoder.py", line 261, in iterencode
+    return _iterencode(o, 0)
+           │           └ {'sku': 'IPHONE15PRO', 'product_name': 'iPhone 15 Pro 256GB', 'category': 'Smartphones', 'current_price': Decimal('437000'), ...
+           └ <_json.Encoder object at 0x000001A45B732C80>
+  File "C:\Users\User\AppData\Local\Programs\Python\Python313\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                                      │ │         └ <member '__name__' of 'getset_descriptor' objects>
+                                      │ └ <attribute '__class__' of 'object' objects>
+                                      └ Decimal('437000')
+
+sqlalchemy.exc.StatementError: (builtins.TypeError) Object of type Decimal is not JSON serializable
+[SQL: INSERT INTO price_snapshots (product_id, competitor_id, scraped_at, current_price, old_price, discount_percent, in_stock, rating, review_count, seller_name, product_url, raw_payload_json, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: [{'raw_payload_json': {'sku': 'IPHONE15PRO', 'product_name': 'iPhone 15 Pro 256GB', 'category': 'Smartphones', 'current_price': Decimal('437000'), 'old ... (566 characters truncated) ... ce': Decimal('437000'), 'scraped_at': datetime.datetime(2026, 5, 16, 4, 52, 31, 636118, tzinfo=datetime.timezone.utc), 'old_price': Decimal('499000')}]]
+2026-05-16 09:53:12.722 | INFO     | src.scrapers.demo_store:scrape_all:60 - Demo scraper extracted 15 snapshots with 0 errors
+2026-05-16 09:53:22.385 | INFO     | src.services.alert_engine:generate_alerts:218 - Generated 0 new alerts
+2026-05-16 09:53:37.851 | INFO     | src.services.demo_data:seed_demo_data:60 - Seeded 60 demo snapshots
+2026-05-16 09:53:46.203 | INFO     | src.services.alert_engine:generate_alerts:218 - Generated 8 new alerts
+2026-05-16 09:53:56.347 | INFO     | src.services.export_service:export_all:49 - Exported 3 Excel workbooks to C:\Users\User\Desktop\Arlan's projects\Project's for work\Competitive Pricing\ecommerce-price-monitor\data\exports
+2026-05-16 09:54:10.656 | INFO     | src.scrapers.demo_store:scrape_all:60 - Demo scraper extracted 15 snapshots with 0 errors
+2026-05-16 09:54:19.180 | INFO     | src.services.export_service:export_all:49 - Exported 3 Excel workbooks to C:\Users\User\Desktop\Arlan's projects\Project's for work\Competitive Pricing\ecommerce-price-monitor\data\exports
+2026-05-16 09:56:34.214 | WARNING  | src.scrapers.demo_store:scrape_file:68 - Playwright unavailable for demomarket.html. Falling back to static parser: It looks like you are using Playwright Sync API inside the asyncio loop.
+Please use the Async API instead.
+2026-05-16 09:56:35.218 | WARNING  | src.scrapers.demo_store:scrape_file:68 - Playwright unavailable for pricehub.html. Falling back to static parser: It looks like you are using Playwright Sync API inside the asyncio loop.
+Please use the Async API instead.
+2026-05-16 09:56:36.221 | WARNING  | src.scrapers.demo_store:scrape_file:68 - Playwright unavailable for shopradar.html. Falling back to static parser: It looks like you are using Playwright Sync API inside the asyncio loop.
+Please use the Async API instead.
+2026-05-16 09:56:36.227 | INFO     | src.scrapers.demo_store:scrape_all:60 - Demo scraper extracted 15 snapshots with 0 errors
+2026-05-16 09:57:13.149 | WARNING  | src.scrapers.demo_store:scrape_file:69 - Playwright unavailable for demomarket.html. Falling back to static parser: It looks like you are using Playwright Sync API inside the asyncio loop.
+Please use the Async API instead.
+2026-05-16 09:57:14.743 | WARNING  | src.scrapers.demo_store:scrape_file:69 - Playwright unavailable for pricehub.html. Falling back to static parser: It looks like you are using Playwright Sync API inside the asyncio loop.
+Please use the Async API instead.
+2026-05-16 09:57:16.288 | WARNING  | src.scrapers.demo_store:scrape_file:69 - Playwright unavailable for shopradar.html. Falling back to static parser: It looks like you are using Playwright Sync API inside the asyncio loop.
+Please use the Async API instead.
+2026-05-16 09:57:16.294 | INFO     | src.scrapers.demo_store:scrape_all:61 - Demo scraper extracted 15 snapshots with 0 errors
+2026-05-16 09:58:27.611 | WARNING  | src.scrapers.demo_store:scrape_file:69 - Playwright unavailable for demomarket.html. Falling back to static parser: BrowserType.launch: Executable doesn't exist at C:\Users\User\AppData\Local\ms-playwright\chromium_headless_shell-1217\chrome-headless-shell-win64\chrome-headless-shell.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝
+2026-05-16 09:58:30.146 | WARNING  | src.scrapers.demo_store:scrape_file:69 - Playwright unavailable for pricehub.html. Falling back to static parser: BrowserType.launch: Executable doesn't exist at C:\Users\User\AppData\Local\ms-playwright\chromium_headless_shell-1217\chrome-headless-shell-win64\chrome-headless-shell.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝
+2026-05-16 09:58:32.478 | WARNING  | src.scrapers.demo_store:scrape_file:69 - Playwright unavailable for shopradar.html. Falling back to static parser: BrowserType.launch: Executable doesn't exist at C:\Users\User\AppData\Local\ms-playwright\chromium_headless_shell-1217\chrome-headless-shell-win64\chrome-headless-shell.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝
+2026-05-16 09:58:32.479 | INFO     | src.scrapers.demo_store:scrape_all:61 - Demo scraper extracted 15 snapshots with 0 errors
+2026-05-16 09:59:50.331 | INFO     | src.scrapers.demo_store:scrape_all:61 - Demo scraper extracted 15 snapshots with 0 errors
+2026-05-16 09:59:56.409 | INFO     | src.services.export_service:export_all:49 - Exported 3 Excel workbooks to C:\Users\User\Desktop\Arlan's projects\Project's for work\Competitive Pricing\ecommerce-price-monitor\data\exports

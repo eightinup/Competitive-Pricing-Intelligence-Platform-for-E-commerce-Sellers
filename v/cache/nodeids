@@ -1,0 +1,8 @@
+[
+  "tests/test_alert_engine.py::test_alert_engine_detects_price_drop_and_discount_started",
+  "tests/test_alert_engine.py::test_alert_engine_detects_stock_and_seller_changes",
+  "tests/test_export_service.py::test_export_service_creates_excel_workbooks",
+  "tests/test_price_history.py::test_percent_change_handles_zero_previous_value",
+  "tests/test_price_history.py::test_percent_change_returns_signed_percent",
+  "tests/test_scraper_demo.py::test_demo_scraper_static_mode_extracts_mock_products"
+]
